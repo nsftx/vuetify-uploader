@@ -1,7 +1,7 @@
 {
-  "name": "vuetify-uploader",
+  "name": "@nsoft/vuetify-uploader",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -9,31 +9,57 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vuetify": "^1.0.19"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
     "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-env": "^1.7.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.5.16"
+    "vue-cli-plugin-vuetify": "^0.1.6",
+    "vue-template-compiler": "^2.5.16",
+    "webpack-bundle-analyzer": "^2.13.1"
+  },
+  "babel": {
+    "plugins": [
+      "lodash"
+    ],
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "browser": true,
+      "jest/globals": true
     },
     "extends": [
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "plugins": [
+      "jest"
+    ],
+    "rules": {
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "js": "never",
+          "vue": "never"
+        }
+      ],
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
@@ -51,14 +77,12 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "jsx",
       "json",
       "vue"
     ],
     "transform": {
-      "^.+\\.vue$": "vue-jest",
-      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.vue$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest"
     },
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
@@ -69,5 +93,11 @@
     "testMatch": [
       "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"
     ]
-  }
+  },
+  "author": "Chameleon Team <chameleon@nsoft.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chmjs/vuetify-colorizer"
+  },
+  "license": "MIT"
 }
