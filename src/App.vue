@@ -1,16 +1,22 @@
 <template>
   <v-app id="app">
+    <VUploader :multiple="true"></VUploader>
   </v-app>
 </template>
 
 <script>
+import VUploader from './components/VUploader';
+
 export default {
   name: 'App',
-  components: {},
-  data () {
-    return {}
-  }
-}
+  components: {
+    VUploader,
+  },
+  data() {
+    return {
+    };
+  },
+};
 </script>
 
 <style>
