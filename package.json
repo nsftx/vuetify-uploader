@@ -12,11 +12,11 @@
   "author": "Chameleon Team <chameleon@nsoft.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chmjs/vuetify-colorizer"
+    "url": "https://github.com/chmjs/vuetify-uploader"
   },
+  "main": "dist/vuetify-uploader.umd.min.js",
   "dependencies": {
     "axios": "^0.18.0",
-    "lodash": "^4.17.10",
     "vue": "^2.5.16",
     "vuetify": "^1.0.19"
   },
@@ -28,7 +28,7 @@
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
-    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-transform-imports": "^1.5.0",
     "babel-preset-env": "^1.7.0",
     "eslint-plugin-jest": "^21.17.0",
     "stylus": "^0.54.5",
@@ -39,7 +39,15 @@
   },
   "babel": {
     "plugins": [
-      "lodash"
+      [
+        "transform-imports",
+        {
+          "vuetify": {
+            "transform": "vuetify/es5/components/${member}",
+            "preventFullImport": true
+          }
+        }
+      ]
     ],
     "presets": [
       "@vue/app"

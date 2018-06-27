@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import { each, findIndex } from 'lodash';
 import api from '../api';
 import VUploadItem from './VUploadItem';
 
@@ -67,10 +66,13 @@ export default {
   },
   methods: {
     onInputChange(evt) {
-      each(evt.target.files, file => this.files.push(file));
+      if (!evt.target.files) return;
+
+      const files = Object.values(evt.target.files);
+      files.forEach(file => this.files.push(file));
     },
     onItemRemove(item) {
-      const idxToRemove = findIndex(this.files, file => file.name === item.name);
+      const idxToRemove = this.files.findIndex(file => file.name === item.name);
       this.files.splice(idxToRemove, 1);
       this.$emit('itemRemoved', item);
     },

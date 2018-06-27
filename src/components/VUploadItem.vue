@@ -13,13 +13,14 @@
           tile>
     <v-card-media class="upload-item-container pa-1"
                   height="150px">
-      <v-icon x-large
-              class="upload-item-icon">
-        {{previewIcon}}
-      </v-icon>
       <img class="upload-item-image"
            v-if="isImage"
            :src="preview">
+      <v-icon v-else
+              x-large
+              class="upload-item-icon">
+        {{previewIcon}}
+      </v-icon>
     </v-card-media>
     <v-divider></v-divider>
     <v-card-text class="upload-item-details pa-2">
@@ -48,7 +49,6 @@
 </template>
 
 <script>
-import { merge } from 'lodash';
 import api from '../api';
 
 const iconMapper = {
@@ -119,7 +119,7 @@ export default {
       this.uploading = true;
       api.uploadFile(this.file).then((result) => {
         this.uploadPassed = true;
-        this.file = merge(this.file, result.data);
+        this.file.id = result.data.id;
         this.$emit('itemUploaded', result.data);
       }).catch((err) => {
         this.uploadFailed = true;
@@ -130,6 +130,11 @@ export default {
       });
     },
     removeFile() {
+      if (this.uploadFailed) {
+        this.$emit('itemRemoved', this.file);
+        return;
+      }
+
       this.uploading = true;
       this.uploadFinished = false;
       this.uploadPassed = false;
