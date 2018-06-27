@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vuetify-uploader src/index.js",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "coverage": "npm test && codecov",
+    "prepublish": "npm run build"
   },
   "license": "MIT",
   "author": "Chameleon Team <chameleon@nsoft.com>",
@@ -30,6 +32,7 @@
     "babel-jest": "^23.0.1",
     "babel-plugin-transform-imports": "^1.5.0",
     "babel-preset-env": "^1.7.0",
+    "codecov": "^3.0.2",
     "eslint-plugin-jest": "^21.17.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
