@@ -13,6 +13,13 @@
                    grid-list-md>
         <v-layout row
                   wrap>
+          <v-flex xs12
+                  v-if="isEmpty"
+                  class="uploader-empty-placeholder blue-grey--text">
+            <v-icon x-large
+                    color="blue-grey">cloud_upload</v-icon>
+            <div>{{message}}</div>
+          </v-flex>
           <v-flex xs6
                   sm3
                   lg2
@@ -62,7 +69,16 @@ export default {
   data() {
     return {
       files: [],
+      placeholderMessage: 'Add files for upload',
     };
+  },
+  computed: {
+    isEmpty() {
+      return this.files.length === 0;
+    },
+    message() {
+      return this.config.emptyPlaceholderMessage || this.placeholderMessage;
+    },
   },
   methods: {
     onInputChange(evt) {
@@ -100,6 +116,12 @@ export default {
   .uploader-input {
     position: absolute;
     display: none;
+  }
+
+  .uploader-empty-placeholder {
+    text-align: center;
+    font-size: 32px;
+    color: $blue-grey;
   }
 }
 </style>
