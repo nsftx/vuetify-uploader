@@ -37,6 +37,9 @@
         </v-layout>
       </v-container>
     </v-card-text>
+    <v-alert color="error" :value="errorMessage">
+      {{errorMessage}}
+    </v-alert>
   </v-card>
 </div>
 </template>
@@ -63,13 +66,14 @@ export default {
     },
     limit: {
       type: Number,
-      default: 2,
+      default: 5,
     },
   },
   data() {
     return {
       files: [],
       placeholderMessage: 'Add files for upload',
+      errorMessage: null,
     };
   },
   computed: {
@@ -81,11 +85,39 @@ export default {
     },
   },
   methods: {
+    validateInput(input) {
+      const names = input.map(item => item.name);
+      const duplicateItems = [];
+      let errorMessage = '';
+
+      names.forEach((name) => {
+        const existing = this.files.find(file => file.name === name);
+        if (existing) duplicateItems.push(name);
+      });
+
+      if (duplicateItems.length) errorMessage = 'Following files are already added: ';
+
+      duplicateItems.forEach((item) => {
+        const idxToRemove = input.findIndex(file => file.name === item);
+        input.splice(idxToRemove, 1);
+      });
+
+      errorMessage += duplicateItems.join(', ');
+      this.errorMessage = errorMessage;
+
+      if (input.length > this.limit) {
+        input.splice(this.limit);
+        this.errorMessage += `${this.limit} files can be added at once`;
+      }
+
+      return input;
+    },
     onInputChange(evt) {
       if (!evt.target.files) return;
 
       const files = Object.values(evt.target.files);
-      files.forEach(file => this.files.push(file));
+      const validFiles = this.validateInput(files);
+      validFiles.forEach(file => this.files.push(file));
     },
     onItemRemove(item) {
       const idxToRemove = this.files.findIndex(file => file.name === item.name);
@@ -96,6 +128,7 @@ export default {
       this.$emit('itemUploaded', item);
     },
     cardClicked() {
+      this.errorMessage = null;
       this.$refs.input.click();
     },
   },
@@ -111,6 +144,7 @@ export default {
 
   .uploader-area {
     border: 2px dashed rgba(black, 0.1);
+    cursor: pointer;
   }
 
   .uploader-input {

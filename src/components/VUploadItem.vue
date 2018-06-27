@@ -161,6 +161,7 @@ export default {
 .upload-item {
   position: relative;
   border: 1px solid rgba(black, 0.1);
+  cursor: default;
 
   .upload-item-remove {
     position: absolute;
