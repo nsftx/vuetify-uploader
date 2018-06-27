@@ -6,7 +6,7 @@
          depressed
          class="upload-item-remove ma-0"
          color="blue-grey lighten-4"
-         @click="removeItem">
+         @click="removeFile">
     <v-icon>close</v-icon>
   </v-btn>
   <v-card flat
@@ -33,17 +33,24 @@
                            class="ma-0"
                            :width="2"
                            size="24">
-    </v-progress-circular>
+      </v-progress-circular>
       <v-icon v-if="uploadSuccess"
               color="green darken-2">check_circle</v-icon>
-      <v-icon v-if="uploadError"
-              color="red darken-2">error</v-icon>
+      <v-tooltip left
+                 v-if="uploadError">
+        <v-icon slot="activator"
+                color="red darken-2">error</v-icon>
+        <span>{{errorMessage}}</span>
+      </v-tooltip>
     </v-card-actions>
   </v-card>
 </div>
 </template>
 
 <script>
+import { merge } from 'lodash';
+import api from '../api';
+
 const iconMapper = {
   image: 'image',
   audio: 'audiotrack',
@@ -54,25 +61,35 @@ const iconMapper = {
 export default {
   name: 'VUploadItem',
   props: {
-    file: {
+    item: {
       type: File,
       default() {
         return {};
       },
     },
+    uploadUrl: {
+      type: String,
+      default: '',
+    },
+    removeParam: {
+      type: String,
+      default: 'id',
+    },
   },
   data() {
     return {
       uploading: false,
-      uploadFinished: true,
+      uploadFinished: false,
       uploadPassed: false,
       uploadFailed: false,
       preview: null,
+      errorMessage: null,
+      file: this.item,
     };
   },
   computed: {
     type() {
-      return this.file.type.split('/')[0];
+      return this.item.type.split('/')[0];
     },
     isImage() {
       return this.type === 'image';
@@ -98,12 +115,39 @@ export default {
 
       reader.readAsDataURL(this.file);
     },
-    removeItem() {
-      this.$emit('remove', this.file.name);
+    uploadFile() {
+      this.uploading = true;
+      api.uploadFile(this.file).then((result) => {
+        this.uploadPassed = true;
+        this.file = merge(this.file, result.data);
+        this.$emit('itemUploaded', result.data);
+      }).catch((err) => {
+        this.uploadFailed = true;
+        this.errorMessage = err.response.data.message;
+      }).finally(() => {
+        this.uploading = false;
+        this.uploadFinished = true;
+      });
+    },
+    removeFile() {
+      this.uploading = true;
+      this.uploadFinished = false;
+      this.uploadPassed = false;
+      this.uploadFailed = false;
+
+      api.removeFile(this.file).then(() => {
+        this.$emit('itemRemoved', this.file);
+      }).catch((err) => {
+        this.uploadFailed = true;
+        this.uploading = false;
+        this.uploadFinished = true;
+        this.errorMessage = err.response.data.message;
+      });
     },
   },
   mounted() {
     this.getPreview();
+    this.uploadFile();
   },
 };
 </script>

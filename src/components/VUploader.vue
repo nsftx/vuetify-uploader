@@ -5,7 +5,8 @@
          ref="input"
          :multiple="multiple"
          @change="onInputChange">
-  <v-card flat color="blue-grey lighten-5">
+  <v-card flat
+          color="blue-grey lighten-5">
     <v-card-text class="uploader-area"
                  @click="cardClicked">
       <v-container fluid
@@ -18,8 +19,12 @@
                   xl1
                   v-for="file in files"
                   :key="file.name">
-            <VUploadItem :file="file"
-                         @remove="onItemRemove">
+            <VUploadItem :item="file"
+                         :uploadUrl="config.uploadUrl"
+                         :removeParam="config.removeParam"
+                         :token="config.token"
+                         @itemUploaded="onItemUpload"
+                         @itemRemoved="onItemRemove">
             </VUploadItem>
           </v-flex>
         </v-layout>
@@ -31,6 +36,7 @@
 
 <script>
 import { each, findIndex } from 'lodash';
+import api from '../api';
 import VUploadItem from './VUploadItem';
 
 export default {
@@ -39,6 +45,12 @@ export default {
     VUploadItem,
   },
   props: {
+    config: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     multiple: {
       type: Boolean,
       default: false,
@@ -57,13 +69,20 @@ export default {
     onInputChange(evt) {
       each(evt.target.files, file => this.files.push(file));
     },
-    onItemRemove(fileName) {
-      const idxToRemove = findIndex(this.files, file => file.name === fileName);
+    onItemRemove(item) {
+      const idxToRemove = findIndex(this.files, file => file.name === item.name);
       this.files.splice(idxToRemove, 1);
+      this.$emit('itemRemoved', item);
+    },
+    onItemUpload(item) {
+      this.$emit('itemUploaded', item);
     },
     cardClicked() {
       this.$refs.input.click();
     },
+  },
+  mounted() {
+    api.configure(this.config);
   },
 };
 </script>
