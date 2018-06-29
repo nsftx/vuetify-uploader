@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import {
+import Vuetify from 'vuetify';
+/* import {
   Vuetify,
   VAlert,
   VApp,
@@ -10,10 +11,12 @@ import {
   VDivider,
   VProgressCircular,
   VTooltip,
-} from 'vuetify';
+} from 'vuetify'; */
 import 'vuetify/src/stylus/app.styl';
+// import 'vuetify/dist/vuetify.min.css';
 
-Vue.use(Vuetify, {
+Vue.use(Vuetify);
+/* Vue.use(Vuetify, {
   components: {
     VAlert,
     VApp,
@@ -25,4 +28,4 @@ Vue.use(Vuetify, {
     VProgressCircular,
     VTooltip,
   },
-});
+}); */

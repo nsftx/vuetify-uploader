@@ -16,17 +16,17 @@
     "type": "git",
     "url": "https://github.com/chmjs/vuetify-uploader"
   },
-  "main": "dist/vuetify-uploader.umd.min.js",
+  "main": "dist/vuetify-uploader.umd.js",
   "dependencies": {
     "axios": "^0.18.0",
     "vue": "^2.5.16",
     "vuetify": "^1.0.19"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
-    "@vue/cli-service": "^3.0.0-beta.15",
-    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "@vue/cli-plugin-babel": "^3.0.0-beta.11",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
+    "@vue/cli-service": "^3.0.0-beta.11",
+    "@vue/eslint-config-airbnb": "^3.0.0-beta.11",
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
@@ -41,17 +41,6 @@
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "babel": {
-    "plugins": [
-      [
-        "transform-imports",
-        {
-          "vuetify": {
-            "transform": "vuetify/es5/components/${member}",
-            "preventFullImport": true
-          }
-        }
-      ]
-    ],
     "presets": [
       "@vue/app"
     ]
