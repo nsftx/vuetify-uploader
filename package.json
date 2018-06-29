@@ -23,11 +23,11 @@
     "vuetify": "^1.0.19"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.11",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
-    "@vue/cli-service": "^3.0.0-beta.11",
-    "@vue/eslint-config-airbnb": "^3.0.0-beta.11",
-    "@vue/test-utils": "^1.0.0-beta.16",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.3",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
+    "@vue/cli-service": "^3.0.0-rc.3",
+    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "@vue/test-utils": "1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "babel-plugin-transform-imports": "^1.5.0",
@@ -41,6 +41,17 @@
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "babel": {
+    "plugins": [
+      [
+        "transform-imports",
+        {
+          "vuetify": {
+            "transform": "vuetify/es5/components/${member}",
+            "preventFullImport": true
+          }
+        }
+      ]
+    ],
     "presets": [
       "@vue/app"
     ]
