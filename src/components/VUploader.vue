@@ -22,8 +22,7 @@
           </v-flex>
           <v-flex xs6
                   sm3
-                  lg2
-                  xl1
+                  xl2
                   v-for="file in files"
                   :key="file.name">
             <VUploadItem :item="file"

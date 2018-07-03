@@ -12,7 +12,7 @@
   <v-card flat
           tile>
     <v-card-media class="upload-item-container pa-1"
-                  height="150px">
+                  height="120px">
       <img class="upload-item-image"
            v-if="isImage"
            :src="preview">
