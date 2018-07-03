@@ -19,6 +19,7 @@
   "main": "dist/vuetify-uploader.umd.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "pretty-bytes": "^5.1.0",
     "vue": "^2.5.16",
     "vuetify": "^1.0.19"
   },

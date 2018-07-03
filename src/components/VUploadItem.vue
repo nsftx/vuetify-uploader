@@ -24,7 +24,7 @@
     </v-card-media>
     <v-divider></v-divider>
     <v-card-text class="upload-item-details pa-2">
-      <div>{{file.size}}</div>
+      <div>{{sizePretty}}</div>
       <div class="upload-item-name">{{file.name}}</div>
     </v-card-text>
     <v-card-actions>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import prettyBytes from 'pretty-bytes';
 import api from '../api';
 
 const iconMapper = {
@@ -96,6 +97,9 @@ export default {
     },
     previewIcon() {
       return iconMapper[this.type];
+    },
+    sizePretty() {
+      return prettyBytes(this.item.size);
     },
     uploadSuccess() {
       return this.uploadFinished && this.uploadPassed;
