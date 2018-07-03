@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/chmjs/vuetify-uploader.svg?branch=master)](https://travis-ci.org/chmjs/vuetify-uploader)
+[![codebeat badge](https://codebeat.co/badges/a97d1a44-c643-484b-805f-35d83d5125c2)](https://codebeat.co/projects/github-com-chmjs-vuetify-uploader-master)
+[![codecov](https://codecov.io/gh/chmjs/vuetify-uploader/branch/master/graph/badge.svg)](https://codecov.io/gh/chmjs/vuetify-uploader)
+
 # vuetify-uploader
 
 > Upload component for Vuetify framework
