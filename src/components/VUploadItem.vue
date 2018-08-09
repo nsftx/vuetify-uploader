@@ -174,6 +174,10 @@ export default {
     z-index: 3;
     min-width: 40px;
     border-radius: 0;
+
+    &:hover {
+      position: absolute !important;
+    }
   }
 
   .upload-item-icon {
