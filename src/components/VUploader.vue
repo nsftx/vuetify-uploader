@@ -7,7 +7,7 @@
          @change="onInputChange">
   <v-card flat
           color="blue-grey lighten-5">
-    <v-card-text class="uploader-area"
+    <v-card-text class="uploader-area pa-0"
                  @click="cardClicked">
       <v-container fluid
                    grid-list-md>
