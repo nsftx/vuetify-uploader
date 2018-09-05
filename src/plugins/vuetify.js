@@ -7,8 +7,10 @@ import {
   VGrid,
   VBtn,
   VIcon,
+  VImg,
   VDivider,
   VProgressCircular,
+  VResponsive,
   VTooltip,
 } from 'vuetify';
 import 'vuetify/src/stylus/app.styl';
@@ -22,7 +24,9 @@ Vue.use(Vuetify, {
     VDivider,
     VGrid,
     VIcon,
+    VImg,
     VProgressCircular,
+    VResponsive,
     VTooltip,
   },
 });

@@ -11,17 +11,17 @@
   </v-btn>
   <v-card flat
           tile>
-    <v-card-media class="upload-item-container pa-1"
-                  height="120px">
-      <img class="upload-item-image"
-           v-if="isImage"
-           :src="preview">
+      <v-img class="upload-item-image"
+             v-if="isImage"
+             height="120px"
+             position="top"
+             :src="preview">
+      </v-img>
       <v-icon v-else
               x-large
               class="upload-item-icon">
         {{previewIcon}}
       </v-icon>
-    </v-card-media>
     <v-divider></v-divider>
     <v-card-text class="upload-item-details pa-2">
       <div>{{sizePretty}}</div>
@@ -83,7 +83,7 @@ export default {
       uploadFinished: false,
       uploadPassed: false,
       uploadFailed: false,
-      preview: null,
+      preview: {},
       errorMessage: null,
       file: this.item,
     };
