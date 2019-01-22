@@ -28,7 +28,9 @@ class Api {
       params.id = file[this.removeParam];
     }
 
-    return axios.delete(url, params);
+    return axios.delete(url, {
+      params,
+    });
   }
 }
 
