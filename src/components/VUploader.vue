@@ -84,6 +84,28 @@ export default {
     },
   },
   methods: {
+    cardClicked() {
+      this.errorMessage = null;
+      this.$refs.input.click();
+    },
+    onInputChange(evt) {
+      if (!evt.target.files) return;
+
+      const files = Object.values(evt.target.files);
+      const validFiles = this.validateInput(files);
+      validFiles.forEach(file => this.files.push(file));
+    },
+    onItemRemove(item) {
+      const idxToRemove = this.files.findIndex(file => file.name === item.name);
+      this.files.splice(idxToRemove, 1);
+      this.$emit('itemRemoved', item);
+    },
+    onItemUpload(item) {
+      this.$emit('itemUploaded', item);
+    },
+    reset() {
+      this.files = [];
+    },
     validateInput(input) {
       const names = input.map(item => item.name);
       const duplicateItems = [];
@@ -110,25 +132,6 @@ export default {
       }
 
       return input;
-    },
-    onInputChange(evt) {
-      if (!evt.target.files) return;
-
-      const files = Object.values(evt.target.files);
-      const validFiles = this.validateInput(files);
-      validFiles.forEach(file => this.files.push(file));
-    },
-    onItemRemove(item) {
-      const idxToRemove = this.files.findIndex(file => file.name === item.name);
-      this.files.splice(idxToRemove, 1);
-      this.$emit('itemRemoved', item);
-    },
-    onItemUpload(item) {
-      this.$emit('itemUploaded', item);
-    },
-    cardClicked() {
-      this.errorMessage = null;
-      this.$refs.input.click();
     },
   },
   mounted() {
