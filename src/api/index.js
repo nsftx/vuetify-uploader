@@ -21,12 +21,14 @@ class Api {
   }
 
   removeFile(file) {
-    let url = this.removeUrl;
+    const url = this.removeUrl;
+    const params = {};
+
     if (this.removeParam && file[this.removeParam]) {
-      url += `/${file[this.removeParam]}`;
+      params.id = file[this.removeParam];
     }
 
-    return axios.delete(url);
+    return axios.delete(url, params);
   }
 }
 
