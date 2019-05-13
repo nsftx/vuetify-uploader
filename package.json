@@ -14,7 +14,7 @@
   "author": "Chameleon Team <chameleon@nsoft.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chmjs/vuetify-uploader"
+    "url": "https://github.com/nsftx/vuetify-uploader"
   },
   "main": "dist/vuetify-uploader.umd.js",
   "dependencies": {
