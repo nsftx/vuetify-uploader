@@ -99,6 +99,7 @@ export default {
       const idxToRemove = this.files.findIndex(file => file.name === item.name);
       this.files.splice(idxToRemove, 1);
       this.$emit('itemRemoved', item);
+      this.$refs.input.value = '';
     },
     onItemUpload(item) {
       this.$emit('itemUploaded', item);
