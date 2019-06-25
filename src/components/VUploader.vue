@@ -106,6 +106,7 @@ export default {
     },
     reset() {
       this.files = [];
+      this.$refs.input.value = '';
     },
     validateInput(input) {
       const names = input.map(item => item.name);
