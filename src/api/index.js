@@ -16,7 +16,6 @@ class Api {
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-
     return axios.post(this.uploadUrl, formData);
   }
 

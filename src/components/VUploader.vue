@@ -37,7 +37,7 @@
         </v-container>
       </v-card-text>
       <v-alert color="error"
-               :value="errorMessage">
+               :value="isErrorVisible">
         {{errorMessage}}
       </v-alert>
     </v-card>
@@ -82,6 +82,9 @@ export default {
     },
     message() {
       return this.config.emptyPlaceholderMessage || this.placeholderMessage;
+    },
+    isErrorVisible() {
+      return Boolean(this.errorMessage);
     },
   },
   methods: {

@@ -1,6 +1,6 @@
 {
   "name": "@nsoft/vuetify-uploader",
-  "version": "1.0.15-beta.1",
+  "version": "1.0.15-beta.2",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",

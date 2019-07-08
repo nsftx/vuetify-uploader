@@ -1,16 +1,16 @@
 <template>
-<div class="upload-item"
-     @click.stop>
-  <v-btn small
-         dark
-         depressed
-         class="upload-item-remove ma-0"
-         color="blue-grey lighten-4"
-         @click="removeFile">
-    <v-icon>close</v-icon>
-  </v-btn>
-  <v-card flat
-          tile>
+  <div class="upload-item"
+       @click.stop>
+    <v-btn small
+           dark
+           depressed
+           class="upload-item-remove ma-0"
+           color="blue-grey lighten-4"
+           @click="removeFile">
+      <v-icon>close</v-icon>
+    </v-btn>
+    <v-card flat
+            tile>
       <v-img class="upload-item-image"
              v-if="isImage"
              height="120px"
@@ -22,30 +22,30 @@
               class="upload-item-icon">
         {{previewIcon}}
       </v-icon>
-    <v-divider></v-divider>
-    <v-card-text class="upload-item-details pa-2">
-      <div>{{sizePretty}}</div>
-      <div class="upload-item-name">{{file.name}}</div>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-progress-circular v-if="uploading"
-                           indeterminate
-                           class="ma-0"
-                           :width="2"
-                           size="24">
-      </v-progress-circular>
-      <v-icon v-if="uploadSuccess"
-              color="green darken-2">check_circle</v-icon>
-      <v-tooltip left
-                 v-if="uploadError">
-        <v-icon slot="activator"
-                color="red darken-2">error</v-icon>
-        <span>{{errorMessage}}</span>
-      </v-tooltip>
-    </v-card-actions>
-  </v-card>
-</div>
+      <v-divider></v-divider>
+      <v-card-text class="upload-item-details pa-2">
+        <div>{{sizePretty}}</div>
+        <div class="upload-item-name">{{file.name}}</div>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-progress-circular v-if="uploading"
+                             indeterminate
+                             class="ma-0"
+                             :width="2"
+                             size="24">
+        </v-progress-circular>
+        <v-icon v-if="uploadSuccess"
+                color="green darken-2">check_circle</v-icon>
+        <v-tooltip left
+                   v-if="uploadError">
+          <v-icon v-slot:activator="{ on }"
+                  color="red darken-2">error</v-icon>
+          <span>{{errorMessage}}</span>
+        </v-tooltip>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -162,39 +162,39 @@ export default {
 </script>
 
 <style lang="scss">
-.upload-item {
-  position: relative;
-  border: 1px solid rgba(black, 0.1);
-  cursor: default;
+  .upload-item {
+    position: relative;
+    border: 1px solid rgba(black, 0.1);
+    cursor: default;
 
-  .upload-item-remove {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 3;
-    min-width: 40px;
-    border-radius: 0;
+    .upload-item-remove {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 3;
+      min-width: 40px;
+      border-radius: 0;
 
-    &:hover {
-      position: absolute !important;
+      &:hover {
+        position: absolute !important;
+      }
+    }
+
+    .upload-item-icon {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-size: 64px !important;
+    }
+
+    .upload-item-image {
+      z-index: 2;
+    }
+
+    .upload-item-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
-
-  .upload-item-icon {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    font-size: 64px !important;
-  }
-
-  .upload-item-image {
-    z-index: 2;
-  }
-
-  .upload-item-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
 </style>
