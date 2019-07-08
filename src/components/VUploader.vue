@@ -1,46 +1,47 @@
 <template>
-<div class="uploader">
-  <input class="uploader-input"
-         type="file"
-         ref="input"
-         :multiple="multiple"
-         @change="onInputChange">
-  <v-card flat
-          color="blue-grey lighten-5">
-    <v-card-text class="uploader-area pa-0"
-                 @click="cardClicked">
-      <v-container fluid
-                   grid-list-md>
-        <v-layout row
-                  wrap>
-          <v-flex xs12
-                  v-if="isEmpty"
-                  class="uploader-empty-placeholder blue-grey--text">
-            <v-icon x-large
-                    color="blue-grey">cloud_upload</v-icon>
-            <div>{{message}}</div>
-          </v-flex>
-          <v-flex xs6
-                  sm3
-                  xl2
-                  v-for="file in files"
-                  :key="file.name">
-            <VUploadItem :item="file"
-                         :uploadUrl="config.uploadUrl"
-                         :removeParam="config.removeParam"
-                         :token="config.token"
-                         @itemUploaded="onItemUpload"
-                         @itemRemoved="onItemRemove">
-            </VUploadItem>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card-text>
-    <v-alert color="error" :value="errorMessage">
-      {{errorMessage}}
-    </v-alert>
-  </v-card>
-</div>
+  <div class="uploader">
+    <input class="uploader-input"
+           type="file"
+           ref="input"
+           :multiple="multiple"
+           @change="onInputChange">
+    <v-card flat
+            color="blue-grey lighten-5">
+      <v-card-text class="uploader-area pa-0"
+                   @click="cardClicked">
+        <v-container fluid
+                     grid-list-md>
+          <v-layout row
+                    wrap>
+            <v-flex xs12
+                    v-if="isEmpty"
+                    class="uploader-empty-placeholder blue-grey--text">
+              <v-icon x-large
+                      color="blue-grey">cloud_upload</v-icon>
+              <div>{{message}}</div>
+            </v-flex>
+            <v-flex xs6
+                    sm3
+                    xl2
+                    v-for="file in files"
+                    :key="file.name">
+              <VUploadItem :item="file"
+                           :uploadUrl="config.uploadUrl"
+                           :removeParam="config.removeParam"
+                           :token="config.token"
+                           @itemUploaded="onItemUpload"
+                           @itemRemoved="onItemRemove">
+              </VUploadItem>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card-text>
+      <v-alert color="error"
+               :value="errorMessage">
+        {{errorMessage}}
+      </v-alert>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -142,7 +143,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .uploader {
   position: relative;
 
@@ -159,7 +160,6 @@ export default {
   .uploader-empty-placeholder {
     text-align: center;
     font-size: 32px;
-    color: $blue-grey;
   }
 }
 </style>

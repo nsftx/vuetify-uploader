@@ -161,7 +161,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .upload-item {
   position: relative;
   border: 1px solid rgba(black, 0.1);
