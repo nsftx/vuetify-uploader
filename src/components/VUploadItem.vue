@@ -39,9 +39,10 @@
                 color="green darken-2">check_circle</v-icon>
         <v-tooltip left
                    v-if="uploadError">
-          <v-icon v-slot:activator="{ on }"
-                  color="red darken-2">error</v-icon>
-          <span>{{errorMessage}}</span>
+          <template v-slot:activator="{ on }">
+            <v-icon color="red darken-2" v-on="on">error</v-icon>
+          </template>
+            <span>{{errorMessage}}</span>
         </v-tooltip>
       </v-card-actions>
     </v-card>
