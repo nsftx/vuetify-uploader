@@ -34,7 +34,7 @@
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-preset-env": "^1.7.0",
     "codecov": "^3.0.4",
-    "eslint-plugin-jest": "^22.13.0",
+    "eslint-plugin-jest": "^22.13.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.5.0",
