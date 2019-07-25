@@ -10,7 +10,8 @@
       <v-icon>close</v-icon>
     </v-btn>
     <v-card flat
-            tile>
+            tile
+            class="upload-item-card">
       <v-img class="upload-item-image"
              v-if="isImage"
              height="120px"
@@ -198,4 +199,10 @@ export default {
       text-overflow: ellipsis;
     }
   }
+
+.theme--dark {
+  .upload-item-card {
+    background: #2d3038 !important;
+  }
+}
 </style>
