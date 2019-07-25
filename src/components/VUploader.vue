@@ -10,8 +10,7 @@
             class="uploader-card">
       <v-card-text class="uploader-area pa-0"
                    @click="cardClicked">
-        <v-container fluid
-                     grid-list-md>
+        <v-container fluid>
           <v-layout row
                     wrap>
             <v-flex xs12
