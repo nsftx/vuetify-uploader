@@ -59,34 +59,6 @@
       "@vue/app"
     ]
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "browser": true,
-      "jest/globals": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "plugins": [
-      "jest"
-    ],
-    "rules": {
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "js": "never",
-          "vue": "never"
-        }
-      ],
-      "no-console": "off"
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
