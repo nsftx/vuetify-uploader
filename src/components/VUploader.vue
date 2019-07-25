@@ -6,7 +6,8 @@
            :multiple="multiple"
            @change="onInputChange">
     <v-card flat
-            color="blue-grey lighten-5">
+            color="lighten-5"
+            class="uploader-card">
       <v-card-text class="uploader-area pa-0"
                    @click="cardClicked">
         <v-container fluid
@@ -17,7 +18,8 @@
                     v-if="isEmpty"
                     class="uploader-empty-placeholder blue-grey--text">
               <v-icon x-large
-                      color="blue-grey">cloud_upload</v-icon>
+                      color="blue-grey"
+                      class="upload-icon">cloud_upload</v-icon>
               <div>{{message}}</div>
             </v-flex>
             <v-flex xs6
@@ -163,6 +165,20 @@ export default {
   .uploader-empty-placeholder {
     text-align: center;
     font-size: 32px;
+  }
+}
+
+.theme--dark {
+  .uploader-card {
+    background-color: rgba(255,255,255,0.08) !important;
+  }
+
+  .uploader-area {
+    border-color: rgba(255,255,255,0.08) !important;
+  }
+
+  .uploader-empty-placeholder, .upload-icon {
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 }
 </style>
