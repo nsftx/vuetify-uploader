@@ -166,11 +166,8 @@ export default {
 }
 
 .theme--dark {
-  .uploader-card {
-    background-color: rgba(255,255,255,0.08) !important;
-  }
-
   .uploader-area {
+    background-color: #2d3038 !important;
     border-color: rgba(255,255,255,0.08) !important;
   }
 
