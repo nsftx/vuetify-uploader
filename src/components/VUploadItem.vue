@@ -12,38 +12,37 @@
     <v-card flat
             tile
             class="upload-item-card">
-      <v-img class="upload-item-image"
-             v-if="isImage"
+      <v-img v-if="isImage"
+             :src="preview"
+             class="upload-item-image"
              height="120px"
-             position="top"
-             :src="preview">
-      </v-img>
+             position="top"/>
       <v-icon v-else
               x-large
               class="upload-item-icon">
-        {{previewIcon}}
+        {{ previewIcon }}
       </v-icon>
-      <v-divider></v-divider>
+      <v-divider/>
       <v-card-text class="upload-item-details pa-2">
-        <div>{{sizePretty}}</div>
-        <div class="upload-item-name">{{file.name}}</div>
+        <div>{{ sizePretty }}</div>
+        <div class="upload-item-name">{{ file.name }}</div>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-progress-circular v-if="uploading"
+                             :width="2"
                              indeterminate
                              class="ma-0"
-                             :width="2"
-                             size="24">
-        </v-progress-circular>
+                             size="24"/>
         <v-icon v-if="uploadSuccess"
                 color="green darken-2">check_circle</v-icon>
-        <v-tooltip left
-                   v-if="uploadError">
+        <v-tooltip v-if="uploadError"
+                   left>
           <template v-slot:activator="{ on }">
-            <v-icon color="red darken-2" v-on="on">error</v-icon>
+            <v-icon color="red darken-2"
+                    v-on="on">error</v-icon>
           </template>
-            <span>{{errorMessage}}</span>
+          <span>{{ errorMessage }}</span>
         </v-tooltip>
       </v-card-actions>
     </v-card>
@@ -110,6 +109,10 @@ export default {
       return this.uploadFinished && this.uploadFailed;
     },
   },
+  mounted() {
+    this.getPreview();
+    this.uploadFile();
+  },
   methods: {
     getPreview() {
       if (!this.isImage) return;
@@ -155,10 +158,6 @@ export default {
         this.errorMessage = err.response.data.message;
       });
     },
-  },
-  mounted() {
-    this.getPreview();
-    this.uploadFile();
   },
 };
 </script>

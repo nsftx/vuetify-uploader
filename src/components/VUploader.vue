@@ -1,9 +1,9 @@
 <template>
   <div class="uploader">
-    <input class="uploader-input"
-           type="file"
-           ref="input"
+    <input ref="input"
            :multiple="multiple"
+           class="uploader-input"
+           type="file"
            @change="onInputChange">
     <v-card flat
             color="lighten-5"
@@ -11,35 +11,33 @@
       <v-card-text class="uploader-area pa-0"
                    @click="cardClicked">
         <v-container fluid>
-          <v-layout row
-                    wrap>
-            <v-flex xs12
-                    v-if="isEmpty"
-                    class="uploader-empty-placeholder blue-grey--text">
+          <v-row>
+            <v-col v-if="isEmpty"
+                   cols="12"
+                   class="uploader-empty-placeholder blue-grey--text">
               <v-icon x-large
                       color="blue-grey"
                       class="upload-icon">cloud_upload</v-icon>
-              <div>{{message}}</div>
-            </v-flex>
-            <v-flex xs6
-                    sm3
-                    xl2
-                    v-for="file in files"
-                    :key="file.name">
+              <div>{{ message }}</div>
+            </v-col>
+            <v-col v-for="file in files"
+                   :key="file.name"
+                   cols="6"
+                   sm="3"
+                   xl="2">
               <VUploadItem :item="file"
-                           :uploadUrl="config.uploadUrl"
-                           :removeParam="config.removeParam"
+                           :upload-url="config.uploadUrl"
+                           :remove-param="config.removeParam"
                            :token="config.token"
                            @itemUploaded="onItemUpload"
-                           @itemRemoved="onItemRemove">
-              </VUploadItem>
-            </v-flex>
-          </v-layout>
+                           @itemRemoved="onItemRemove"/>
+            </v-col>
+          </v-row>
         </v-container>
       </v-card-text>
-      <v-alert color="error"
-               :value="isErrorVisible">
-        {{errorMessage}}
+      <v-alert :value="isErrorVisible"
+               color="error">
+        {{ errorMessage }}
       </v-alert>
     </v-card>
   </div>
@@ -87,6 +85,9 @@ export default {
     isErrorVisible() {
       return Boolean(this.errorMessage);
     },
+  },
+  mounted() {
+    api.configure(this.config);
   },
   methods: {
     cardClicked() {
@@ -140,9 +141,6 @@ export default {
 
       return input;
     },
-  },
-  mounted() {
-    api.configure(this.config);
   },
 };
 </script>
