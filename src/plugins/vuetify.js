@@ -1,32 +1,10 @@
 import Vue from 'vue';
-import {
-  Vuetify,
-  VAlert,
-  VApp,
-  VCard,
-  VGrid,
-  VBtn,
-  VIcon,
-  VImg,
-  VDivider,
-  VProgressCircular,
-  VResponsive,
-  VTooltip,
-} from 'vuetify';
-import 'vuetify/src/stylus/app.styl';
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify, {
-  components: {
-    VAlert,
-    VApp,
-    VBtn,
-    VCard,
-    VDivider,
-    VGrid,
-    VIcon,
-    VImg,
-    VProgressCircular,
-    VResponsive,
-    VTooltip,
+Vue.use(Vuetify);
+
+export default new Vuetify({
+  icons: {
+    iconfont: 'md',
   },
 });
