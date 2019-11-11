@@ -30,7 +30,7 @@
                            :remove-param="config.removeParam"
                            :token="config.token"
                            @itemUploaded="onItemUpload"
-                           @itemRemoved="onItemRemove"/>
+                           @itemRemoved="onItemRemove" />
             </v-col>
           </v-row>
         </v-container>

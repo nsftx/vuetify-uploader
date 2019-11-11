@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <VUploader :multiple="true"
-               :config="config"/>
+               :config="config" />
   </v-app>
 </template>
 
