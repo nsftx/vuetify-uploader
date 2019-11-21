@@ -99,10 +99,10 @@ export default {
 
       const files = Object.values(evt.target.files);
       const validFiles = this.validateInput(files);
-      validFiles.forEach(file => this.files.push(file));
+      validFiles.forEach((file) => this.files.push(file));
     },
     onItemRemove(item) {
-      const idxToRemove = this.files.findIndex(file => file.name === item.name);
+      const idxToRemove = this.files.findIndex((file) => file.name === item.name);
       this.files.splice(idxToRemove, 1);
       this.$emit('itemRemoved', item);
       this.$refs.input.value = '';
@@ -115,19 +115,19 @@ export default {
       this.$refs.input.value = '';
     },
     validateInput(input) {
-      const names = input.map(item => item.name);
+      const names = input.map((item) => item.name);
       const duplicateItems = [];
       let errorMessage = '';
 
       names.forEach((name) => {
-        const existing = this.files.find(file => file.name === name);
+        const existing = this.files.find((file) => file.name === name);
         if (existing) duplicateItems.push(name);
       });
 
       if (duplicateItems.length) errorMessage = 'Following files are already added: ';
 
       duplicateItems.forEach((item) => {
-        const idxToRemove = input.findIndex(file => file.name === item);
+        const idxToRemove = input.findIndex((file) => file.name === item);
         input.splice(idxToRemove, 1);
       });
 
