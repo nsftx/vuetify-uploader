@@ -40,7 +40,7 @@
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "^2.0.4",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.4.3",
+    "vuetify-loader": "^1.4.4",
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "babel": {
